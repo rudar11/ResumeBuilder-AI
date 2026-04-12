@@ -1,0 +1,20 @@
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+vendor/
+
+# Environment files
+.env
+
+# Build output
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
