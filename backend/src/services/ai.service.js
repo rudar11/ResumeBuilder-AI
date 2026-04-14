@@ -3,11 +3,9 @@ const { z } = require('zod')
 const {zodToJsonSchema} = require('zod-to-json-schema')
 const puppeteer = require('puppeteer')
 const ai = new GoogleGenAI({
-
     apiKey: process.env.GOOGLE_GENAI_API_KEY
 
 });
-
 
 
 const interviewReportSchema = z.object({
@@ -37,7 +35,6 @@ const interviewReportSchema = z.object({
 
 
 
-
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
     // 1. Strict Prompt with explicit formatting rules
     const prompt = `Generate an interview report JSON.
@@ -62,7 +59,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 
     let data = JSON.parse(response.text);
 
-    // 2. DATA CLEANING: Agar AI ne galti se string bhej di ho, toh use object banao
+    
     const cleanArray = (arr) => {
         return arr.map(item => {
             if (typeof item === 'string') {
@@ -75,7 +72,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
     if (data.technicalQuestions) data.technicalQuestions = cleanArray(data.technicalQuestions);
     if (data.behavioralQuestions) data.behavioralQuestions = cleanArray(data.behavioralQuestions);
     
-    // SkillGaps aur PreparationPlan ko bhi sanitize karna zaruri hai
+    // SkillGaps and PreparationPlan 
     if (data.skillGaps && typeof data.skillGaps[0] === 'string') {
         data.skillGaps = data.skillGaps.map(s => ({ skill: s, severity: "medium" }));
     }
@@ -87,8 +84,6 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
     console.log("✅ CLEANED DATA:", data);
     return data;
 }
-
-
 
 
 
@@ -141,9 +136,7 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
 
 
     const jsonContent = JSON.parse(response.text)
-
     const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
-
     return pdfBuffer
 
 }

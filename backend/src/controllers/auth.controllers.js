@@ -141,5 +141,4 @@ res.status(200).json({
 }
 
 
-
 module.exports = { registerUser, loginUser, logoutUser , getme }
