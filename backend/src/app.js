@@ -9,7 +9,6 @@ const interviewRouter = require('./routes/interview.routes')
 //database call
 connectdb();
 
-
 //middleware
 app.use(express.json())
 app.use(cookieParser())
@@ -19,10 +18,8 @@ app.use(cors({
 }))
 
 
-
 // prefix
 app.use('/api/auth' , authRoutes)
 app.use('/api/interview' , interviewRouter)
-
 
  module.exports = app
