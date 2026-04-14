@@ -4,7 +4,6 @@ const authcontroller = require('../controllers/auth.controllers')
 const authMiddleware = require('../middlewares/auth.middlewares')
 
 
-
 /**
 * @route POST /api/auth/register
 * @description Register a new user
@@ -13,14 +12,12 @@ const authMiddleware = require('../middlewares/auth.middlewares')
 router.post('/register',authcontroller.registerUser)
 
 
-
 /**
 * @route POST /api/auth/login
 * @description Login a  user
 * @access Public
 */
 router.post('/login',authcontroller.loginUser)
-
 
 
 /**
@@ -37,8 +34,5 @@ router.get('/logout',authcontroller.logoutUser)
 * @access Private
 */
 router.get('/get-me',authMiddleware.authUser , authcontroller.getme)
-
-
-
 
 module.exports = router

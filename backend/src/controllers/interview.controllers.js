@@ -4,11 +4,6 @@ const {generateInterviewReport , generateResumePdf}= require('../services/ai.ser
 const interviewReportModel = require('../models/interviewReport.models')
 
 
-
-
-
-
-
 async function generateInterViewReportController(req, res) {
     try {
         const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText();
@@ -20,7 +15,7 @@ async function generateInterViewReportController(req, res) {
             jobDescription
         });
 
-        // 1. AI wrap karke bhejta hai toh handle karo
+        
         let aiData = Array.isArray(rawAiResponse) ? rawAiResponse[0] : rawAiResponse;
         if (aiData.interviewReport) {
             aiData = aiData.interviewReport;
@@ -31,7 +26,7 @@ async function generateInterViewReportController(req, res) {
         // 1. Title Search (Regex for title, role, position)
         const titleKey = Object.keys(aiData).find(k => /title|role|position/i.test(k));
         
-        // 2. Score Deep Search (Har kone se score nikalna)
+        // 2. Score Deep Search 
         let finalScore = 0;
         const directScoreKey = Object.keys(aiData).find(k => /score|match/i.test(k));
         
