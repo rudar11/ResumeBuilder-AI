@@ -1,0 +1,24 @@
+@use "./style/button.scss";
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  
+    width: 100%;
+    background-color: #1f1e1e;
+    color: aliceblue;
+
+}
+
+.highlight{
+
+
+    color: rgb(31, 116, 227);
+}
